@@ -1,0 +1,21 @@
+SELECT SUM(cost) as sumatoria
+FROM trips
+WHERE cost > 500000 AND (state = 'booked' OR state = 'paid')
+
+SELECT c.name
+FROM Payments p
+JOIN Clients c ON p.clientId = c.id
+WHERE p.paymentMethod = 'cash'
+
+SELECT *
+FROM clients
+WHERE age > 40 AND residenceCity = 'Bogotá'
+
+SELECT Trips.*
+FROM Trips
+INNER JOIN Payments ON Trips.id = Payments.tripId
+WHERE Trips.typeTrip IN ('recreational', 'business') AND Payments.paymentMethod = 'creditcard'
+
+SELECT *
+FROM trips
+WHERE (state = 'available' OR state = 'cancelled')

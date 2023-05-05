@@ -1,0 +1,78 @@
+// Para saber la edad del usuario, se calcula la diferencia de tiempo entre
+// la fecha actual y su fecha de nacimiento, tomando solamente los años
+
+
+calculateAge (birthdate)
+nowdate = getNowDate()
+return parseInt(diff(nowdate, birthdate)->FormData('%y'))
+
+
+
+
+// Al solicitar ver los viajes disponibles, se analizará aquellos que su fecha de
+// partida sea mayor que la actual, además aquellos que aún posean vacantes, y se le
+// retornará al usuario una lista de estos
+
+
+seeTrips ()
+Trip.forEach(trip => {
+    if(trip.departue > getNowDate())
+        if(trip.slotsLeft > 0)
+            Trips.push(trip)
+})
+return Trips[]
+
+
+
+
+// Al reservar un viaje, este reducirá las plazas disponibles que posee y
+// cambiará su estado
+
+
+bookTrip (trip)
+trip.state = booked
+trip.slotsTaken += 1
+return "Se ha reservado su viaje"
+
+
+
+
+// Para realizar el pago del viaje, primero se verificará si el método de pago es
+// válido, después se procede a analizar el estado del viaje para actualizar
+// las plazas disponibles de este
+
+
+payTrip(method, trip)
+if(method.isAccpeted == true)
+    if(trip.state == booked)
+        trip.state = paid
+        return "Su viaje ha sido pagado exitosamente"
+    else
+        trip.slotsTaken += 1
+        trip.state = paid
+        return "Su viaje ha sido pagado exitosamente"
+else
+    return "Por favor verifique su método de pago"
+
+
+
+// Para cancelar un viaje, primero se analiza el estado de este y se actualiza su estado
+// además de liberar el cupo
+
+
+cancelTrip(trip)
+if(trip.state == paid || trip.state == booked)
+    trip.state = cancelled
+    trip.slotsTaken -= 1
+    return "Su viaje a sido cancelado exitosamente"
+else
+    return "No se puede cancelar un viaje que no ha sido pagado o reservado"
+
+
+
+// Para saber cuantos cupos tiene disponible un viaje, se resta los que ya están pagos
+// y reservados al total
+
+
+getSlotsLeft(totalSlots, slotsTaken)
+return totalSlots - slotsTaken
